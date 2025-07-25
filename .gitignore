@@ -1,1 +1,3 @@
 DB/
+backend/__pycache__/
+.gitignore
