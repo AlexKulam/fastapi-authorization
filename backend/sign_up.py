@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from backend.data_base import SessionLocal, User
 from passlib.hash import bcrypt
 
-router = APIRouter
+router = APIRouter()
 
 def get_db():
     db = SessionLocal()
@@ -12,7 +12,7 @@ def get_db():
     finally:
         db.close()
 
-@router.post("signup")
+@router.post("/signup")
 def register_user(
     username: str = Form(...),
     email: str = Form(...),
@@ -32,3 +32,4 @@ def register_user(
     db.commit()
 
     return {"message": "Пользователь успешно зарегистрирован"}
+

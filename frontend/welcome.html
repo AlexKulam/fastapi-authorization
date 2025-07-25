@@ -1,0 +1,27 @@
+<!-- Frontend сгенерирован нейросетью -->
+ 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Добро пожаловать</title>
+</head>
+<body>
+  <h2 id="greeting">Добро пожаловать!</h2>
+  <button onclick="logout()">Выйти</button>
+
+  <script>
+    const username = localStorage.getItem("username");
+    if (username) {
+      document.getElementById("greeting").textContent = `Добро пожаловать, ${username}!`;
+    } else {
+      window.location.href = "login.html";
+    }
+
+    function logout() {
+      localStorage.removeItem("username");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

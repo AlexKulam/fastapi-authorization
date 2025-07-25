@@ -13,12 +13,8 @@ def get_db():
         db.close()
 
 @router.post("/login")
-def login_user(
-    username: str = Form(...), 
-    password: str = Form(...), 
-    db: Session = Depends(get_db)
-):
+def login_user(username: str = Form(...), password: str = Form(...), db: Session = Depends(get_db)):
     user = db.query(User).filter(User.username == username).first()
     if not user or not bcrypt.verify(password, user.password):
-        raise HTTPException(status_code=400, detail="Несоотвестиве данных")
-    return {"message": "Вход успешный"}
+        raise HTTPException(status_code=400, detail="Invalid credentials")
+    return {"message": "Login successful"}

@@ -1,0 +1,41 @@
+<!-- Frontend сгенерирован нейросетью -->
+ 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Вход</title>
+</head>
+<body>
+  <h2>Вход</h2>
+  <form id="loginForm">
+    <input name="username" placeholder="Имя пользователя" required><br>
+    <input name="password" type="password" placeholder="Пароль" required><br>
+    <button type="submit">Войти</button>
+  </form>
+  <p id="result"></p>
+  <a href="signup.html">Нет аккаунта? Зарегистрироваться</a>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const res = await fetch("/login", {
+        method: "POST",
+        body: formData
+      });
+
+      const msg = document.getElementById("result");
+      if (res.ok) {
+        const data = await res.json();
+        localStorage.setItem("username", formData.get("username"));
+        msg.textContent = "Вход выполнен";
+        setTimeout(() => window.location.href = "welcome.html", 1000);
+      } else {
+        const data = await res.json();
+        msg.textContent = data.detail || "Ошибка входа";
+      }
+    });
+  </script>
+</body>
+</html>
