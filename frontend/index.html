@@ -21,10 +21,23 @@
       cursor: pointer;
     }
   </style>
+  <script>
+  function openAdmin() {
+    const password = prompt("Введите пароль для входа в админку:");
+    
+    if (password === "1111") {
+
+      window.location.href = "admin.html";
+    } else if (password !== null) {
+      alert("Неверный пароль");
+    }
+  }
+</script>
 </head>
 <body>
   <h1>Добро пожаловать в приложение</h1>
   <button onclick="window.location.href='login.html'">Войти</button>
   <button onclick="window.location.href='signup.html'">Зарегистрироваться</button>
+  <button onclick="openAdmin()">Админка</button>
 </body>
 </html>
